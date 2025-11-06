@@ -1,0 +1,21 @@
+{
+  "content": ["./index.html", "./script.js"],
+  "css": ["./style.css"],
+  "output": "./style.purged.css",
+  "safelist": [
+    "lamp",
+    "btn",
+    "order",
+    "guess",
+    "history",
+    "final",
+    "finish",
+    "lit",
+    "off",
+    "on",
+    "selected",
+    "active",
+    "disabled",
+    "hidden"
+  ]
+}

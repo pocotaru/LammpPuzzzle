@@ -11,6 +11,9 @@
     "lint:js": "eslint *.js",
     "lint:html": "htmlhint *.html",
     "lint:css": "stylelint *.css",
+    "css:purge": "purgecss --css style.css --content index.html script.js --output style.purged.css",
+    "css:analyze": "purgecss --css style.css --content index.html script.js --output style.analysis.css",
+    "css:uncss": "uncss index.html --csspath . --output style.uncss.css",
     "format": "prettier --write *.js *.html *.css *.md",
     "format:check": "prettier --check *.js *.html *.css *.md",
     "prepare": "husky"
@@ -34,6 +37,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
+    "@fullhuman/postcss-purgecss": "^7.0.2",
     "eslint": "^9.39.1",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
@@ -41,8 +45,10 @@
     "husky": "^9.1.7",
     "lint-staged": "^16.2.6",
     "prettier": "^3.6.2",
+    "purgecss": "^7.0.2",
     "stylelint": "^16.25.0",
-    "stylelint-config-standard": "^39.0.1"
+    "stylelint-config-standard": "^39.0.1",
+    "uncss": "^0.17.3"
   },
   "lint-staged": {
     "*.js": [

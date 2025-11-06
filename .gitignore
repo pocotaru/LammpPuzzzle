@@ -39,3 +39,8 @@ build/
 # Logs
 *.log
 logs/
+
+# CSS analysis output
+style.purged.css
+style.analysis.css
+style.uncss.css

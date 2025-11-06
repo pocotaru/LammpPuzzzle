@@ -2,12 +2,10 @@
 const gameState = {
   lampCount: 0,
   currentTrial: 0,
-  phase: 'setup', // 'setup', 'input_lit', 'select_guess', 'finished'
+  phase: 'setup', // 'setup', 'input_lit', 'finished'
   litLamps: [],
   possiblePositions: {},
   currentGuess: [],
-  selectedGuessIndex: null,
-  possibleGuesses: [],
   history: [],
 };
 
@@ -22,8 +20,6 @@ const elements = {
   lampGrid: document.getElementById('lamp-grid'),
   confirmBtn: document.getElementById('confirm-btn'),
   clearBtn: document.getElementById('clear-btn'),
-  guessArea: document.getElementById('guess-area'),
-  guessList: document.getElementById('guess-list'),
   trialTitle: document.getElementById('trial-title'),
   guessOrder: document.getElementById('guess-order'),
   instruction: document.getElementById('instruction'),
@@ -71,7 +67,6 @@ function startGame() {
 
   renderLampGrid();
   updateTrialInfo();
-  elements.guessArea.style.display = 'none';
 }
 
 // ランプグリッド描画
@@ -151,10 +146,14 @@ function confirmLitLamps() {
     return;
   }
 
-  // 推測リストを表示
-  gameState.possibleGuesses = feasibleGuesses.slice(0, 5); // 最大5個
-  gameState.phase = 'select_guess';
-  showGuessList();
+  // 自動的に上位(最初)の推測を次の試行にセット
+  gameState.currentGuess = feasibleGuesses[0];
+  gameState.currentTrial++;
+  gameState.phase = 'input_lit';
+
+  // ランプグリッドをリセット
+  renderLampGrid();
+  updateTrialInfo();
 }
 
 // 制約更新（Pythonコードと同じロジック）
@@ -265,66 +264,6 @@ function findAllFeasibleGuesses(possiblePositions, N, maxCount = 100) {
 
   backtrack(0);
   return results;
-}
-
-// 推測リスト表示
-function showGuessList() {
-  elements.guessList.innerHTML = '';
-  gameState.selectedGuessIndex = null;
-
-  gameState.possibleGuesses.forEach((guess, index) => {
-    const item = document.createElement('div');
-    item.className = 'guess-item';
-    item.dataset.index = index;
-
-    const radio = document.createElement('input');
-    radio.type = 'radio';
-    radio.name = 'guess';
-    radio.id = `guess-${index}`;
-
-    const sequence = document.createElement('div');
-    sequence.className = 'guess-sequence';
-
-    guess.forEach(lampId => {
-      const lampDiv = document.createElement('div');
-      lampDiv.className = 'guess-lamp';
-      const span = document.createElement('span');
-      span.textContent = lampId;
-      lampDiv.appendChild(span);
-      sequence.appendChild(lampDiv);
-    });
-
-    item.appendChild(radio);
-    item.appendChild(sequence);
-
-    item.addEventListener('click', () => {
-      const confirmMsg = `この推測順で試しますか？\n\n${guess.join(' → ')}`;
-      if (confirm(confirmMsg)) {
-        gameState.selectedGuessIndex = index;
-        selectGuess();
-      }
-    });
-
-    elements.guessList.appendChild(item);
-  });
-
-  elements.guessArea.style.display = 'block';
-}
-
-// 推測を選択して次の試行へ
-function selectGuess() {
-  if (gameState.selectedGuessIndex === null) return;
-
-  gameState.currentGuess = gameState.possibleGuesses[gameState.selectedGuessIndex];
-  gameState.currentTrial++;
-  gameState.phase = 'input_lit';
-
-  // ランプグリッドをリセット
-  renderLampGrid();
-  updateTrialInfo();
-
-  // 推測エリアを非表示
-  elements.guessArea.style.display = 'none';
 }
 
 // 試行情報更新
@@ -459,8 +398,6 @@ function resetGame() {
   gameState.litLamps = [];
   gameState.possiblePositions = {};
   gameState.currentGuess = [];
-  gameState.selectedGuessIndex = null;
-  gameState.possibleGuesses = [];
   gameState.history = [];
 
   elements.setupArea.style.display = 'block';
