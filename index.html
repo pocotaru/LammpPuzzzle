@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LammpPuzzzle</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>LammpPuzzzle</h1>
+        <p class="subtitle">ランプの位置を推測するパズルゲーム</p>
+        <p class="inspired-by">オリジナルロジックパズルゲーム</p>
+      </header>
+
+      <!-- 著作権表示 -->
+      <div class="copyright-notice section">
+        <div class="copyright-content">
+          <h3>著作権表示・免責事項</h3>
+          <p class="copyright-text">
+            このアプリケーションは一般的なパズルゲームとして独自に開発された作品です。<br />
+            完全オリジナルの実装により作成されています。<br />
+            特定のゲーム会社・作品との関連はありません。
+          </p>
+          <p class="disclaimer">
+            記載されている会社名・製品名などは、各社の商標または登録商標です。<br />
+            本サイトは非営利・個人制作のパズルゲームサイトです。
+          </p>
+        </div>
+      </div>
+
+      <!-- 初期設定エリア -->
+      <div id="setup-area" class="section">
+        <div class="setup-form">
+          <label for="lamp-count">ランプ数:</label>
+          <input type="number" id="lamp-count" min="3" max="10" value="5" />
+          <button id="start-btn" class="btn btn-primary">スタート</button>
+          <button id="reset-btn" class="btn btn-secondary" style="display: none">リセット</button>
+        </div>
+        <div class="help-text">
+          <p>💡 3～10個のランプ数を選んでスタートしてください</p>
+        </div>
+      </div>
+
+      <!-- ゲームエリア -->
+      <div id="game-area" style="display: none">
+        <!-- 試行情報 -->
+        <div class="section">
+          <h2 id="trial-title">第1試行: 初期設定</h2>
+          <p id="guess-order" class="guess-order">推測順: 1 - 2 - 3 - 4 - 5</p>
+        </div>
+
+        <!-- ランプ表示エリア -->
+        <div class="section">
+          <p id="instruction" class="lamp-instruction">点灯しているランプをクリックしてください</p>
+          <div id="lamp-grid" class="lamp-grid">
+            <!-- JavaScriptで生成 -->
+          </div>
+          <div class="button-group">
+            <button id="confirm-btn" class="btn btn-primary">確定</button>
+            <button id="clear-btn" class="btn btn-secondary">クリア</button>
+          </div>
+        </div>
+
+        <!-- 推測リスト選択エリア -->
+        <div id="guess-area" class="section" style="display: none">
+          <h3>次の推測候補から選択してください:</h3>
+          <div id="guess-list" class="guess-list">
+            <!-- JavaScriptで生成 -->
+          </div>
+        </div>
+
+        <!-- 履歴エリア -->
+        <div id="history-area" class="section">
+          <h3>履歴:</h3>
+          <div id="history-list" class="history-list">
+            <!-- JavaScriptで生成 -->
+          </div>
+        </div>
+      </div>
+
+      <!-- 終了メッセージ -->
+      <div id="finish-area" class="section" style="display: none">
+        <div class="finish-message">
+          <h2>🎉 ゲーム終了！ 🎉</h2>
+          <p id="finish-text"></p>
+          <button id="restart-btn" class="btn btn-primary">もう一度プレイ</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- フッター -->
+    <footer class="footer">
+      <div class="footer-content">
+        <p class="footer-copyright">LammpPuzzzle - オリジナルパズルゲーム</p>
+        <p class="footer-disclaimer">
+          このサイトは完全オリジナルの個人制作パズルゲームサイトです。<br />
+          いかなるゲーム会社・作品とも関係ありません。
+        </p>
+        <p class="developer-info">Developed by: pocotaru | 2025</p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,64 @@
+{
+  "name": "lammppuzzzle",
+  "version": "1.0.0",
+  "description": "An original puzzle game inspired by MMORPG dungeon mechanics. Guess the correct lamp position sequence based on lighting patterns.",
+  "main": "script.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint *.js && htmlhint *.html && stylelint *.css",
+    "lint:fix": "eslint *.js --fix && stylelint *.css --fix",
+    "lint:js": "eslint *.js",
+    "lint:html": "htmlhint *.html",
+    "lint:css": "stylelint *.css",
+    "format": "prettier --write *.js *.html *.css *.md",
+    "format:check": "prettier --check *.js *.html *.css *.md",
+    "prepare": "husky"
+  },
+  "keywords": [
+    "puzzle",
+    "game",
+    "javascript",
+    "web-app",
+    "logic-puzzle"
+  ],
+  "author": "pocotaru",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pocotaru/LammpPuzzzle.git"
+  },
+  "homepage": "https://github.com/pocotaru/LammpPuzzzle",
+  "bugs": {
+    "url": "https://github.com/pocotaru/LammpPuzzzle/issues"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "htmlhint": "^1.7.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.6",
+    "prettier": "^3.6.2",
+    "stylelint": "^16.25.0",
+    "stylelint-config-standard": "^39.0.1"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.html": [
+      "htmlhint",
+      "prettier --write"
+    ],
+    "*.css": [
+      "stylelint --fix",
+      "prettier --write"
+    ],
+    "*.md": [
+      "prettier --write"
+    ]
+  }
+}

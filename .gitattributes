@@ -1,0 +1,39 @@
+# テキストファイルの改行コード設定
+* text=auto
+
+# 特定のファイルタイプの改行コード設定
+*.html text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.xml text eol=lf
+
+# バイナリファイルの設定
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.zip binary
+*.exe binary
+
+# 設定ファイル
+.gitignore text eol=lf
+.gitattributes text eol=lf
+.editorconfig text eol=lf
+
+# Node.js関連
+package.json text eol=lf
+package-lock.json text eol=lf
+*.npmrc text eol=lf
+
+# ESLint・Prettier関連
+.eslintrc* text eol=lf
+eslint.config.js text eol=lf
+.prettierrc* text eol=lf
+.stylelintrc* text eol=lf
+.htmlhintrc text eol=lf
