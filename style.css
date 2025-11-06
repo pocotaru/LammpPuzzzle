@@ -276,15 +276,17 @@ h1 {
 /* ランプグリッド */
 .lamp-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 30px;
   max-width: 700px;
   margin: 30px auto;
   padding: 30px;
+  justify-items: center;
 }
 
 .lamp {
-  aspect-ratio: 1;
+  width: 100px;
+  height: 100px;
   cursor: pointer;
   transition: all 0.4s ease;
   position: relative;
