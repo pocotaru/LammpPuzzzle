@@ -33,9 +33,6 @@ Thumbs.db
 # Claude specific
 .claude/
 
-# GitHub specific
-.github/
-
 # Deployment
 dist/
 build/
