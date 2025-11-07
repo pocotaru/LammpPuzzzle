@@ -7,6 +7,7 @@ const gameState = {
   possiblePositions: {},
   currentGuess: [],
   history: [],
+  stateHistory: [], // 状態履歴（戻す機能用）
 };
 
 // DOM要素
@@ -20,6 +21,7 @@ const elements = {
   lampGrid: document.getElementById('lamp-grid'),
   confirmBtn: document.getElementById('confirm-btn'),
   clearBtn: document.getElementById('clear-btn'),
+  undoBtn: document.getElementById('undo-btn'),
   trialTitle: document.getElementById('trial-title'),
   guessOrder: document.getElementById('guess-order'),
   instruction: document.getElementById('instruction'),
@@ -33,6 +35,7 @@ elements.startBtn.addEventListener('click', startGame);
 elements.resetBtn.addEventListener('click', resetGame);
 elements.confirmBtn.addEventListener('click', confirmLitLamps);
 elements.clearBtn.addEventListener('click', clearLamps);
+elements.undoBtn.addEventListener('click', undoLastTrial);
 elements.restartBtn.addEventListener('click', resetGame);
 
 // ゲーム開始
@@ -111,6 +114,61 @@ function clearLamps() {
   });
 }
 
+// 状態を履歴に保存（戻す機能用）
+function saveStateForUndo() {
+  const state = {
+    currentTrial: gameState.currentTrial,
+    currentGuess: [...gameState.currentGuess],
+    possiblePositions: {},
+    historyLength: gameState.history.length,
+  };
+
+  // possiblePositionsのディープコピー
+  for (let lamp in gameState.possiblePositions) {
+    state.possiblePositions[lamp] = new Set(gameState.possiblePositions[lamp]);
+  }
+
+  gameState.stateHistory.push(state);
+}
+
+// 前回の試行に戻す
+function undoLastTrial() {
+  if (gameState.stateHistory.length === 0) {
+    return;
+  }
+
+  // 確認ダイアログ
+  const confirmMsg = `前回の試行（第${gameState.currentTrial - 1}試行）に戻しますか？\n現在の試行データは失われます。`;
+  if (!confirm(confirmMsg)) {
+    return;
+  }
+
+  // 最後の状態を復元
+  const previousState = gameState.stateHistory.pop();
+  gameState.currentTrial = previousState.currentTrial;
+  gameState.currentGuess = previousState.currentGuess;
+  gameState.possiblePositions = previousState.possiblePositions;
+
+  // 履歴表示を削除（最後の試行を削除）
+  if (gameState.history.length > previousState.historyLength) {
+    gameState.history.splice(previousState.historyLength);
+    const historyItems = elements.historyList.children;
+    if (historyItems.length > 0) {
+      elements.historyList.removeChild(historyItems[0]);
+    }
+  }
+
+  // UIを更新
+  gameState.phase = 'input_lit';
+  renderLampGrid();
+  updateTrialInfo();
+
+  // 戻す履歴がなくなったらボタンを無効化
+  if (gameState.stateHistory.length === 0) {
+    elements.undoBtn.disabled = true;
+  }
+}
+
 // 点灯確定
 function confirmLitLamps() {
   const litLamps = [...gameState.litLamps].sort((a, b) => a - b);
@@ -135,6 +193,9 @@ function confirmLitLamps() {
     return;
   }
 
+  // 現在の状態を履歴に保存（戻す機能用）
+  saveStateForUndo();
+
   // 履歴に追加
   addHistory(gameState.currentTrial, gameState.currentGuess, litLamps);
 
@@ -154,6 +215,9 @@ function confirmLitLamps() {
   // ランプグリッドをリセット
   renderLampGrid();
   updateTrialInfo();
+
+  // 戻すボタンを有効化
+  elements.undoBtn.disabled = false;
 }
 
 // 制約更新（Pythonコードと同じロジック）
@@ -399,12 +463,14 @@ function resetGame() {
   gameState.possiblePositions = {};
   gameState.currentGuess = [];
   gameState.history = [];
+  gameState.stateHistory = [];
 
   elements.setupArea.style.display = 'block';
   elements.gameArea.style.display = 'none';
   elements.finishArea.style.display = 'none';
   elements.resetBtn.style.display = 'none';
-  elements.lampGrid.style.display = 'grid';
+  elements.undoBtn.disabled = true;
+  elements.lampGrid.style.display = 'flex';
   elements.historyList.innerHTML = '';
 
   // ボタングループをリセット
@@ -423,12 +489,21 @@ function resetGame() {
   clearBtn.textContent = 'クリア';
   clearBtn.addEventListener('click', clearLamps);
 
+  const undoBtn = document.createElement('button');
+  undoBtn.id = 'undo-btn';
+  undoBtn.className = 'btn btn-secondary';
+  undoBtn.textContent = '戻す';
+  undoBtn.disabled = true;
+  undoBtn.addEventListener('click', undoLastTrial);
+
   buttonGroup.appendChild(confirmBtn);
   buttonGroup.appendChild(clearBtn);
+  buttonGroup.appendChild(undoBtn);
 
   // 要素参照を更新
   elements.confirmBtn = confirmBtn;
   elements.clearBtn = clearBtn;
+  elements.undoBtn = undoBtn;
 
   // guessOrderのclassNameをリセット
   elements.guessOrder.className = 'guess-order';

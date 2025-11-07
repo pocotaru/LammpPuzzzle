@@ -163,10 +163,18 @@ h1 {
   border-color: rgba(255, 255, 255, 0.2);
 }
 
-.btn-secondary:hover {
+.btn-secondary:hover:not(:disabled) {
   background: rgba(60, 65, 80, 0.9);
   border-color: rgba(255, 255, 255, 0.3);
   transform: translateY(-2px);
+}
+
+.btn-secondary:disabled {
+  background: rgba(30, 30, 40, 0.5);
+  color: #555;
+  border-color: rgba(100, 100, 100, 0.3);
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 
 .button-group {
@@ -275,18 +283,18 @@ h1 {
 
 /* ランプグリッド */
 .lamp-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  gap: 30px;
-  max-width: 700px;
-  margin: 30px auto;
-  padding: 30px;
-  justify-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  justify-content: center;
 }
 
 .lamp {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   cursor: pointer;
   transition: all 0.4s ease;
   position: relative;
@@ -294,7 +302,7 @@ h1 {
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  padding-bottom: 10px;
+  padding-bottom: 8px;
 }
 
 /* ガス灯ランプのデザイン */

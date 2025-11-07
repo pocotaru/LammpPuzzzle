@@ -27,12 +27,6 @@
 
       <!-- ゲームエリア -->
       <div id="game-area" style="display: none">
-        <!-- 試行情報 -->
-        <div class="section">
-          <h2 id="trial-title">第1試行: 初期設定</h2>
-          <p id="guess-order" class="guess-order">推測順: 1 - 2 - 3 - 4 - 5</p>
-        </div>
-
         <!-- ランプ表示エリア -->
         <div class="section">
           <p id="instruction" class="lamp-instruction">点灯しているランプをクリックしてください</p>
@@ -42,7 +36,14 @@
           <div class="button-group">
             <button id="confirm-btn" class="btn btn-primary">確定</button>
             <button id="clear-btn" class="btn btn-secondary">クリア</button>
+            <button id="undo-btn" class="btn btn-secondary" disabled>戻す</button>
           </div>
+        </div>
+
+        <!-- 試行情報 -->
+        <div class="section">
+          <h2 id="trial-title">第1試行: 初期設定</h2>
+          <p id="guess-order" class="guess-order">推測順: 1 - 2 - 3 - 4 - 5</p>
         </div>
 
         <!-- 履歴エリア -->
