@@ -13,8 +13,7 @@ ENV/
 env.bak/
 venv.bak/
 
-# IDE
-.vscode/
+# IDE (VSCode settings are now included)
 .idea/
 *.swp
 *.swo
@@ -44,3 +43,26 @@ logs/
 style.purged.css
 style.analysis.css
 style.uncss.css
+
+# Security & Local development
+.npmrc
+.yarnrc
+*.pem
+*.key
+*.p12
+*.p8
+*.cer
+*.crt
+*.csr
+*.pfx
+
+# Local configuration
+config/local.json
+config/development.json
+config/production.json
+
+# Temporary files
+temp/
+tmp/
+*.tmp
+*.temp

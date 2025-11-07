@@ -1,0 +1,24 @@
+{
+  // Copilot Chat設定
+  "github.copilot.enable": {
+    "*": true,
+    "yaml": false,
+    "plaintext": false,
+    "markdown": false
+  },
+
+  // コード変更前の確認
+  "github.copilot.chat.executeCommand.confirmation": true,
+  "github.copilot.chat.applyInEditor": "ask",
+
+  // 自動適用の無効化
+  "github.copilot.chat.experimental.codeGeneration.instructions": "always-confirm",
+
+  // インライン提案の制御
+  "github.copilot.inlineSuggest.enable": true,
+  "github.copilot.inlineSuggest.count": 3,
+
+  // チャットでのファイル変更制御
+  "github.copilot.chat.editor.insertMode": "replace",
+  "github.copilot.chat.editor.wordWrap": "on"
+}

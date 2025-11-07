@@ -1,0 +1,100 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "🔍 全体チェック - ESLint + Prettier + HTML + CSS",
+      "type": "npm",
+      "script": "lint",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "problemMatcher": ["$eslint-stylish", "$tsc"],
+      "detail": "全てのファイルに対してESLint、Prettier、HTMLHint、Stylelintを実行"
+    },
+    {
+      "label": "🔧 自動修正 - ESLint + Prettier",
+      "type": "npm",
+      "script": "lint:fix",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "problemMatcher": ["$eslint-stylish"],
+      "detail": "自動修正可能な問題を修正"
+    },
+    {
+      "label": "🎨 フォーマット - Prettier",
+      "type": "npm",
+      "script": "format",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "detail": "Prettierによるコード整形"
+    },
+    {
+      "label": "🌐 HTML チェック - HTMLHint",
+      "type": "npm",
+      "script": "lint:html",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "detail": "HTMLファイルの構文チェック"
+    },
+    {
+      "label": "🎭 CSS チェック - Stylelint",
+      "type": "npm",
+      "script": "lint:css",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "detail": "CSSファイルの構文チェック"
+    },
+    {
+      "label": "🗑️ CSS 未使用削除 - PurgeCSS分析",
+      "type": "npm",
+      "script": "css:analyze",
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": false
+      },
+      "detail": "未使用CSSクラスの検出と削除"
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "🔍 全体チェック実行",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npm run lint",
+      "cwd": "${workspaceFolder}",
+      "presentation": {
+        "hidden": false,
+        "group": "lint",
+        "order": 1
+      }
+    },
+    {
+      "name": "🔧 自動修正実行",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npm run lint:fix",
+      "cwd": "${workspaceFolder}",
+      "presentation": {
+        "hidden": false,
+        "group": "lint",
+        "order": 2
+      }
+    },
+    {
+      "name": "🎨 フォーマット実行",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npm run format",
+      "cwd": "${workspaceFolder}",
+      "presentation": {
+        "hidden": false,
+        "group": "format",
+        "order": 1
+      }
+    },
+    {
+      "name": "🌐 HTML チェック",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npm run lint:html",
+      "cwd": "${workspaceFolder}",
+      "presentation": {
+        "hidden": false,
+        "group": "specific",
+        "order": 1
+      }
+    },
+    {
+      "name": "🎭 CSS チェック",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npm run lint:css",
+      "cwd": "${workspaceFolder}",
+      "presentation": {
+        "hidden": false,
+        "group": "specific",
+        "order": 2
+      }
+    },
+    {
+      "name": "🗑️ CSS 未使用削除",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npm run css:analyze",
+      "cwd": "${workspaceFolder}",
+      "presentation": {
+        "hidden": false,
+        "group": "css",
+        "order": 1
+      }
+    }
+  ],
+  "compounds": [
+    {
+      "name": "🔥 完全チェック（全ツール）",
+      "configurations": ["🔍 全体チェック実行"],
+      "stopAll": true,
+      "presentation": {
+        "hidden": false,
+        "group": "compound",
+        "order": 1
+      }
+    }
+  ]
+}
