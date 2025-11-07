@@ -30,81 +30,10 @@
 - **HTML5**: 基本構造
 - **CSS3**: スタイリング
 - **Vanilla JavaScript**: ゲームロジック
-- **Node.js**: 開発環境・ツール
 
-## 📁 ファイル構成
+## � 開発者向け情報
 
-```
-├── index.html          # メインHTMLファイル
-├── style.css           # スタイルシート
-├── script.js           # JavaScriptゲームロジック
-├── package.json        # Node.js設定・依存関係
-├── eslint.config.js    # ESLint設定
-├── .prettierrc         # Prettier設定
-├── .stylelintrc.json   # Stylelint設定
-├── .htmlhintrc         # HTMLHint設定
-├── .husky/             # Git hooks設定
-└── README.md           # このファイル
-```
-
-## 🔧 開発環境セットアップ
-
-### 必要な環境
-
-- Node.js（voltaによりインストール済み）
-- Git
-
-### 依存関係のインストール
-
-```bash
-npm install
-```
-
-### 利用可能なスクリプト
-
-#### 構文チェック
-
-```bash
-# すべてのファイルをチェック
-npm run lint
-
-# JavaScript専用
-npm run lint:js
-
-# HTML専用
-npm run lint:html
-
-# CSS専用
-npm run lint:css
-
-# 自動修正（JavaScript、CSS）
-npm run lint:fix
-```
-
-#### フォーマット
-
-```bash
-# すべてのファイルをフォーマット
-npm run format
-
-# フォーマットをチェックのみ
-npm run format:check
-```
-
-## 🔄 Pre-commit機能
-
-このプロジェクトにはpre-commit機能が設定されており、コミット時に自動的に以下が実行されます：
-
-- **JavaScriptファイル**: ESLint + Prettier
-- **HTMLファイル**: HTMLHint + Prettier
-- **CSSファイル**: Stylelint + Prettier
-- **Markdownファイル**: Prettier
-
-### Git Hooks
-
-- `pre-commit`: コミット前に構文チェックとフォーマット実行
-
-問題が発見された場合、コミットは中断されるため、コードの品質が保たれます。
+開発環境のセットアップや構文チェックツールの使用方法については、[DEVELOP.md](DEVELOP.md) をご覧ください。
 
 ## 🎯 特徴
 
@@ -130,13 +59,15 @@ npm run format:check
 - 当サイトに記載されている会社名・製品名・システム名などは、各社の商標、または登録商標です。
 - ゲームの仕組みやルールは一般的なパズルゲームとして独自に実装されています。
 
-### 開発ガイドライン
+### 開発について
 
 このプロジェクトは以下を考慮して開発されています：
 
 - 完全オリジナルの実装
 - 非営利・個人利用の範囲
 - 各社の知的財産権の尊重
+
+**開発者向け情報**: 詳細な開発ガイドは [DEVELOP.md](DEVELOP.md) をご参照ください。
 
 ## 🙏 Attributions
 
@@ -162,7 +93,8 @@ This is an original puzzle game inspired by dungeon mechanics found in MMORPGs. 
 - Intuitive user interface
 - History tracking
 - Support for 3-10 lamps
-- Code quality tools (ESLint, Prettier, etc.)
+
+**For developers**: See [DEVELOP.md](DEVELOP.md) for development setup and code quality tools.
 
 ### License
 
